@@ -49,9 +49,11 @@ def load_image(img_path, is_label_img):
     # if 'is_label_img' is True use argument outputPixelType=sitk.sitkUInt8,
     #  else use outputPixelType=sitk.sitkFloat32
     """
-    pixel_type = sitk.sitkUInt8 if is_label_img is True else sitk.sitkFloat32
-
-    img = sitk.ReadImage(img_path, outputPixelType=pixel_type)
+    
+    if is_label_img:
+        img = sitk.ReadImage(img_path, outputPixelType=sitk.sitkUInt8)
+    else:
+        img = sitk.ReadImage(img_path, outputPixelType=sitk.sitkFloat32)
 
     return img
 
